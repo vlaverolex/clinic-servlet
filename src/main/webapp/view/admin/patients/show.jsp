@@ -84,7 +84,11 @@
                                 </c:otherwise>
                             </c:choose>
                         </th>
-                        <th scope="row"><fmt:message key="delete" bundle="${messages}"/></th>
+                        <th scope="row"><form method="post" action="${pageContext.request.contextPath}/app/admin/patients/delete?patientId=${patient.id}">
+                            <input name="${_csrf.parameterName}" value="${_csrf.token}" type="hidden">
+                            <button type="submit" class="btn btn-danger"><i class="fa fa-solid fa-trash"></i>
+                            </button>
+                        </form></th>
                     </tr>
                 </c:forEach>
                 </tbody>

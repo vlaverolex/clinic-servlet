@@ -96,9 +96,19 @@ public class UserService {
         LOGGER.info("User updated = {}", user);
     }
 
-    public static void delete(User user) {
+    public static void delete(User user) throws UserNotFoundException {
+        try {
+            removeDoctorForPatient(user.getId());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         USER_DAO.delete(user);
         LOGGER.info("User deleted = {}", user);
+        try {
+            commit();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static void assignDoctorForPatient(Long patientId, Long doctorId) throws UserNotFoundException, SQLException {

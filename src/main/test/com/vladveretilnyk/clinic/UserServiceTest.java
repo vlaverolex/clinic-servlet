@@ -70,7 +70,7 @@ public class UserServiceTest {
         List<User> patients = UserService.findPatientsByDoctor(doctor);
         Assert.assertEquals(patients.size(), patients.stream().filter(patient -> patient.getDoctor().getUsername().equals(doctor.getUsername())).count());
 
-        patients.forEach(UserService::delete);
+        for(User patient:patients) UserService.delete(patient);
         UserService.delete(doctor);
     }
 
@@ -97,7 +97,7 @@ public class UserServiceTest {
         List<User> patients = UserService.findPatientsByNurse(nurse);
         Assert.assertEquals(patients.size(), patients.stream().filter(patient -> patient.getNurse().getUsername().equals(nurse.getUsername())).count());
 
-        patients.forEach(UserService::delete);
+        for(User patient:patients) UserService.delete(patient);
         UserService.delete(nurse);
     }
 

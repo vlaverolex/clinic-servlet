@@ -12,6 +12,7 @@ import com.vladveretilnyk.clinic.controller.command.impl.make.MakeProceduresComm
 import com.vladveretilnyk.clinic.controller.command.impl.make.MakeSurgeryCommand;
 import com.vladveretilnyk.clinic.controller.command.impl.remove.DischargeUserCommand;
 import com.vladveretilnyk.clinic.controller.command.impl.remove.RemoveStaffForPatientCommand;
+import com.vladveretilnyk.clinic.controller.command.impl.remove.RemoveUserCommand;
 import com.vladveretilnyk.clinic.controller.command.impl.view.ViewNoteCommand;
 import com.vladveretilnyk.clinic.controller.command.impl.view.ViewNotesCommand;
 import com.vladveretilnyk.clinic.controller.command.impl.view.ViewUserIndexPageCommand;
@@ -44,6 +45,7 @@ public class Servlet extends HttpServlet {
         commands.put("admin/doctors/create", new CreateDoctorCommand());
         commands.put("admin/nurses/create", new CreateNurseCommand());
         commands.put("admin/patients/create", new CreatePatientCommand());
+        commands.put("admin/patients/delete", new RemoveUserCommand());
         commands.put("admin/patients/remove-doctor", new RemoveStaffForPatientCommand());
         commands.put("admin/patients/assign-doctor", new AssignStaffForPatientCommand());
         commands.put("doctor/patients/remove-nurse", new RemoveStaffForPatientCommand());

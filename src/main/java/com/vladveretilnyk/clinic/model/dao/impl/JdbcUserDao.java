@@ -300,6 +300,7 @@ public class JdbcUserDao implements UserDao {
     @Override
     public void delete(User user) {
         try (Statement statement = connection.createStatement()) {
+            statement.execute("delete from note where patient_id = '" + user.getId() + "'");
             statement.execute("delete from user where user_id = '" + user.getId() + "'");
             commit();
         } catch (SQLException e) {

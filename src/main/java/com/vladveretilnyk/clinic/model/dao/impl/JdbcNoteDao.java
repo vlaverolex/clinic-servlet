@@ -68,8 +68,9 @@ public class JdbcNoteDao implements NoteDao {
         try (PreparedStatement statement = connection.prepareStatement(
                 "insert into note (id,creation_date, diagnosis, " +
                         "doctor_id_who_created_note, is_procedures_done, is_surgery_done, " +
-                        "person_id_who_made_procedures, procedures, surgery, patient_id) values (?,?,?,?,?,?,?,?,?)"
+                        "person_id_who_made_procedures, procedures, surgery, patient_id) values (?,?,?,?,?,?,?,?,?,?)"
         )) {
+            statement.execute("alter table note auto_increment=1");
             statement.setObject(1, note.getId());
             statement.setDate(2, java.sql.Date.valueOf(note.getCreationDate()));
             statement.setString(3, note.getDiagnosis());
